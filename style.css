@@ -1,0 +1,210 @@
+/* Базовые настройки */
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    background: #f4f7f9; /* Очень светлый серо-голубой фон */
+    color: #222;
+}
+
+/* Шапка сайта (в цветах Косыгина) */
+header {
+    background: #003366;
+    color: #fff;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    
+    /* === НОВЫЕ СТРОКИ ДЛЯ ФИКСАЦИИ === */
+    position: fixed; /* Фиксируем шапку */
+    top: 0;          /* Прижимаем к самому верху */
+    left: 0;         /* Растягиваем на всю ширину */
+    width: 100%;
+    z-index: 1000;   /* Шапка всегда поверх других элементов */
+    box-sizing: border-box; /* Чтобы padding не ломал ширину */
+}
+header h1 { 
+    margin: 0; 
+    font-size: 22px; 
+    font-weight: 600;
+}
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 24px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+header nav a:hover {
+    color: #90c2ff; /* Светло-голубой при наведении */
+}
+
+/* Основной контент */
+main {
+    padding: 32px;
+    margin-top: 70px; 
+}
+
+/* Карточка наряда (белая подложка) */
+.card-view {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.card-view h1 { 
+    margin-top: 0; 
+    color: #003366; 
+    font-size: 28px;
+}
+
+/* Характеристики */
+.card-view dl, .specs {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    row-gap: 12px;
+    column-gap: 16px;
+    font-size: 15px;
+}
+.card-view dt, .specs dt { 
+    font-weight: 600; 
+    color: #7f8c8d; /* Серый для подписей */
+}
+.card-view dd, .specs dd { 
+    margin: 0; 
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+/* Контейнер под 3D и фото */
+#canvas-container {
+    width: 100%;
+    height: 500px;
+    background: #eef2f5; /* Светлый фон для 3D */
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #dce4ec;
+}
+
+/* Текст-подсказка */
+.hint {
+    font-size: 13px;
+    color: #95a5a6;
+    margin: 12px 0 0;
+}
+
+/* Описание */
+.description {
+    line-height: 1.6;
+    color: #34495e;
+    font-size: 15px;
+}
+
+/* Каталог (сетка карточек на главной) */
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+.card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.card img,
+.card .no-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #eef2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #95a5a6;
+}
+.card h3 { margin: 12px 0 4px; font-size: 16px; color: #003366; }
+.card .meta { color: #7f8c8d; font-size: 13px; margin: 0 0 12px; }
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    background: #0055aa; /* Синий цвет кнопок */
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: auto;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover { 
+    background: #003366; /* Темнеет при наведении */
+}
+
+/* Вкладки (Фото / 3D) */
+.view-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+.view-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background: #eef2f5;
+    border: 1px solid #dce4ec;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #7f8c8d;
+    transition: 0.2s;
+}
+.view-tab:hover { 
+    background: #dce4ec; 
+}
+.view-tab.active {
+    background: #0055aa;
+    color: #fff;
+    border-color: #0055aa;
+}
+.view-content { display: none; }
+.view-content.active { display: block; }
+
+/* Подвал */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #95a5a6;
+    font-size: 13px;
+}
+
+/* Пустое состояние (если нет нарядов) */
+.empty-state {
+    background: #fff;
+    border-radius: 12px;
+    padding: 60px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-top: 24px;
+}
+.empty-state p { margin: 8px 0; color: #7f8c8d; font-size: 16px; }
